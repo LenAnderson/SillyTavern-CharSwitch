@@ -1,0 +1,82 @@
+#rightNavHolder > .drawer-toggle {
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  height: var(--stcs--iconSize);
+  width: var(--stcs--iconSize);
+}
+#rightNavHolder > .drawer-toggle.stcs--char:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  aspect-ratio: 1 / 1;
+  background-image: var(--stcs--avatar);
+  background-size: cover;
+  background-position: top center;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 0px black);
+  pointer-events: none;
+  opacity: 0.8;
+}
+body:not(.stcs--nonDiscord) #rightNavHolder > .drawer-toggle.stcs--char:has(.drawer-icon.openIcon):after {
+  border-radius: 40%;
+}
+#rightNavHolder > .drawer-toggle.stcs--char:hover:after {
+  opacity: 1;
+}
+#rightNavHolder > .drawer-toggle.stcs--char > .drawer-icon:before {
+  display: none;
+}
+.stcs--ctxBlocker {
+  cursor: default;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+}
+.stcs--ctxBlocker > .stcs--ctxMenu {
+  --stcs--y: 100vh;
+  position: absolute;
+  left: var(--nav-bar-width);
+  bottom: calc(100vh - var(--stcs--y));
+  max-height: var(--stcs--y);
+  margin: 0;
+  flex-direction: column-reverse;
+  overflow: auto;
+}
+body.stcs--nonDiscord .stcs--ctxBlocker > .stcs--ctxMenu {
+  flex-direction: column;
+  bottom: unset;
+  top: var(--stcs--y);
+  max-height: calc(100vh - var(--stcs--y));
+}
+.stcs--ctxBlocker > .stcs--ctxMenu > .stcs--ctxItem {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  opacity: 0.5;
+  transition: 200ms;
+}
+.stcs--ctxBlocker > .stcs--ctxMenu > .stcs--ctxItem:hover {
+  opacity: 1;
+}
+.stcs--ctxBlocker > .stcs--ctxMenu > .stcs--ctxItem > .stcs--ctxAvatar {
+  width: var(--stcs--iconSize);
+  aspect-ratio: 1/1;
+  background-size: cover;
+  background-position: top center;
+  border-radius: 50%;
+}
+.stcs--ctxBlocker > .stcs--ctxMenu > .stcs--ctxItem > .stcs--ctxAvatar.stcs--ctxIcon {
+  aspect-ratio: unset;
+  font-size: calc(var(--stcs--iconSize) * 0.75);
+  text-align: center;
+}
+.stcs--ctxBlocker > .stcs--ctxMenu > .stcs--ctxItem > .stcs--ctxName {
+  flex: 1 1 auto;
+}
+.stcs--ctxBlocker > .stcs--ctxMenu > .stcs--ctxItem.stcs--fav > .stcs--ctxAvatar {
+  outline: 2px solid gold;
+}
+.stcs--ctxBlocker > .stcs--ctxMenu > .stcs--ctxItem.stcs--fav > .stcs--ctxName {
+  color: gold;
+}

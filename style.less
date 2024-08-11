@@ -1,0 +1,82 @@
+#rightNavHolder > .drawer-toggle {
+	cursor: pointer;
+	position: relative;
+	z-index: 1;
+	height: var(--stcs--iconSize);
+	width: var(--stcs--iconSize);
+	&.stcs--char {
+		&:after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			aspect-ratio: 1 / 1;
+			background-image: var(--stcs--avatar);
+			background-size: cover;
+			background-position: top center;
+			border-radius: 50%;
+			filter: drop-shadow(0 0 0px black);
+			pointer-events: none;
+			opacity: 0.8;
+		}
+		body:not(.stcs--nonDiscord) &:has(.drawer-icon.openIcon):after { border-radius: 40%; }
+		&:hover:after { opacity: 1; }
+
+		> .drawer-icon{
+			&:before { display: none; }
+		}
+	}
+}
+
+.stcs--ctxBlocker {
+    cursor: default;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    > .stcs--ctxMenu {
+		--stcs--y: 100vh;
+        position: absolute;
+        left: var(--nav-bar-width);
+		bottom: calc(100vh - var(--stcs--y));
+		max-height: var(--stcs--y);
+		margin: 0;
+		flex-direction: column-reverse;
+		overflow: auto;
+		body.stcs--nonDiscord & {
+			flex-direction: column;
+			bottom: unset;
+			top: var(--stcs--y);
+			max-height: calc(100vh - var(--stcs--y));
+		}
+        > .stcs--ctxItem {
+            display: flex;
+            gap: 1em;
+            align-items: center;
+            opacity: 0.5;
+            transition: 200ms;
+            &:hover { opacity: 1; }
+            > .stcs--ctxAvatar {
+                width: var(--stcs--iconSize);
+                aspect-ratio: 1/1;
+                background-size: cover;
+                background-position: top center;
+                border-radius: 50%;
+                &.stcs--ctxIcon {
+                    aspect-ratio: unset;
+                    font-size: calc(var(--stcs--iconSize)  * 0.75);
+                    text-align: center;
+                }
+            }
+            > .stcs--ctxName {
+                flex: 1 1 auto;
+            }
+			&.stcs--fav {
+				> .stcs--ctxAvatar {
+					outline: 2px solid gold;
+				}
+				> .stcs--ctxName {
+					color: gold;
+				}
+			}
+        }
+    }
+}
