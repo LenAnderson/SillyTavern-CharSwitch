@@ -1,7 +1,6 @@
 import { characters, event_types, eventSource, saveSettingsDebounced, selectCharacterById, setActiveCharacter, setActiveGroup, this_chid } from '../../../../script.js';
 import { extension_settings } from '../../../extensions.js';
-import { groups, openGroupById } from '../../../group-chats.js';
-import { groupId } from '../SillyTavern-TriggerCards/index.js';
+import { groups, openGroupById, selected_group } from '../../../group-chats.js';
 
 let isDiscord = null;
 let currentChar;
@@ -19,7 +18,7 @@ extension_settings.charSwitch = settings;
 
 
 const onChatChanged = async()=>{
-    currentChar = characters[this_chid] ?? groups.find(it=>it.id == groupId);
+    currentChar = characters[this_chid] ?? groups.find(it=>it.id == selected_group);
     trigger.classList[currentChar && settings.showAvatar ? 'add' : 'remove']('stcs--char');
     trigger.style.setProperty('--stcs--avatar', `url("${await getAvatar(currentChar)}")`);
 };
